@@ -9,8 +9,6 @@ const pool = new Pool({
   port: process.env.PGPORT,
 });
 
-console.log(process.env)
-
 const getTipodocumento = async (req, res) => {
   const response = await pool.query("SELECT * FROM tipo_documentos");
   res.send(response.rows);
