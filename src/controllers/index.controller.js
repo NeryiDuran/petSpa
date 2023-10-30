@@ -1,12 +1,15 @@
 const { Pool } = require("pg");
+require('dotenv').config();
 
 const pool = new Pool({
-  host: "localhost",
-  user: "postgres",
-  password: "pass",
-  database: "petSpa",
-  port: 5432,
+  host: process.env.APP_HOST,
+  user: process.env.APP_USER,
+  password: process.env.APP_PASSWORD,
+  database: process.env.APP_DATABASE,
+  port: process.env.APP_PORT,
 });
+
+console.log(process.env)
 
 const getTipodocumento = async (req, res) => {
   const response = await pool.query("SELECT * FROM tipo_documentos");
