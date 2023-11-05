@@ -50,12 +50,21 @@ const getMascota = async (req, res) => {
   );
   res.send(response.rows[0]);
 };
-const getReserva = async (req, res) => {
-  const response = await pool.query("SELECT * FROM reservas");
+const getReservas = async (req, res) => {
+  const mascotas = req.query.mascotas;
+  let response;
+
+  console.info('####', mascotas);
+  if (mascotas !== undefined) {
+    response = await pool.query("SELECT * FROM reservas WHERE mascota_id IN(" + mascotas +")");
+  } else {
+    response = await pool.query("SELECT * FROM reservas");
+  }
+
   res.send(response.rows);
 };
 
-const getReservas = async (req, res) => {
+const getReserva = async (req, res) => {
   const response = await pool.query(
     "SELECT * FROM reservas WHERE id=" + req.params.reservas_id
   );
@@ -227,7 +236,7 @@ const deleteMascota = async (req, res) => {
   );
   res.send("Eliminado");
 };
-const deleteReservas = async (req, res) => {
+const deleteReserva = async (req, res) => {
   const response = await pool.query(
     "DELETE from reservas WHERE id = " + req.params.reserva_id + ""
   );
@@ -257,5 +266,5 @@ module.exports = {
   updateReservas,
   deleteCliente,
   deleteMascota,
-  deleteReservas
+  deleteReserva
 };
