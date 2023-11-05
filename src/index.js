@@ -1,11 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use(require('./routers/index'));
 
-
 app.listen(3000);
-console.log('server por 3.000')
+console.log('server por 3.000');
