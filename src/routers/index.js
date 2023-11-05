@@ -25,7 +25,8 @@ const {
   updateReservas,
   deleteCliente,
   deleteMascota,
-  deleteReserva
+  deleteReserva,
+  ingresar
 } = require("../controllers/index.controller");
 
 router.get("/tipo-documentos", getTipodocumento);
@@ -46,6 +47,7 @@ router.post("/clientes", createClientes);
 router.post("/mascotas", createMascotas);
 router.post("/reservas", createReservas);
 router.post("/servicios", createServicios);
+router.post("/ingresar", ingresar);
 router.post("/tipo-mascotas", createTipomascotas);
 router.put("/clientes/:cliente_id", updateCliente);
 router.put("/mascotas/:mascota_id", updateMascotas);

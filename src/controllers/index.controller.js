@@ -171,6 +171,18 @@ const createTipomascotas = async (req, res) => {
   res.send("Creado");
 };
 
+const ingresar = async (req, res) => {
+  const response = await pool.query(
+    "SELECT * FROM clientes WHERE correo_electronico='" + req.body.correo_electronico + "' AND contrasena='" + req.body.contrasena + "'"
+  );
+
+  if (response.rows.length > 0) {
+    res.send(response.rows[0]);
+  } else {
+    res.status(404).send('Not found');
+  }
+};
+
 const updateCliente = async (req, res) => {
   const response = await pool.query(
     "UPDATE clientes SET documento = '" +
@@ -265,5 +277,6 @@ module.exports = {
   updateReservas,
   deleteCliente,
   deleteMascota,
-  deleteReserva
+  deleteReserva,
+  ingresar
 };
