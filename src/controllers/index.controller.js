@@ -35,6 +35,8 @@ const getMascotas = async (req, res) => {
   const cliente = req.query.cliente;
   let response;
 
+  console.error('####', cliente);
+
   if (cliente !== undefined) {
     response = await pool.query("SELECT * FROM mascotas WHERE propietario_id=" + cliente);
   } else {
@@ -53,7 +55,7 @@ const getMascota = async (req, res) => {
 const getReservas = async (req, res) => {
   const mascotas = req.query.mascotas;
   let response;
-
+  console.error('####', mascotas);
   if (mascotas !== undefined) {
     response = await pool.query("SELECT r.id, r.fecha_hora, s.nombre AS servicio, m.nombre AS mascota FROM reservas AS r INNER JOIN servicios s ON s.id=r.servicio_id INNER JOIN mascotas m ON m.id=r.mascota_id WHERE r.mascota_id IN(" + mascotas + ")");
   } else {
