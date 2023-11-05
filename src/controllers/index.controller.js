@@ -255,6 +255,6 @@ module.exports = {
   updateMascotas,
   updateReservas,
   deleteCliente,
-  deleteMascotas,
+  deleteMascota,
   deleteReservas
 };

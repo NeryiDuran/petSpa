@@ -24,7 +24,7 @@ const {
   updateMascotas,
   updateReservas,
   deleteCliente,
-  deleteMascotas,
+  deleteMascota,
   deleteReservas
 } = require("../controllers/index.controller");
 
