@@ -33,12 +33,12 @@ const getClientes = async (req, res) => {
 };
 const getMascotas = async (req, res) => {
   const cliente = req.query.cliente;
-  console.info('###', cliente);
+  let response;
 
-  if (cliente) {
-    const response = await pool.query("SELECT * FROM mascotas WHERE propietario_id=" + cliente);
+  if (cliente !== undefined) {
+    response = await pool.query("SELECT * FROM mascotas WHERE propietario_id=" + cliente);
   } else {
-    const response = await pool.query("SELECT * FROM mascotas");
+    response = await pool.query("SELECT * FROM mascotas");
   }
 
   res.send(response.rows);
