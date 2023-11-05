@@ -54,11 +54,10 @@ const getReservas = async (req, res) => {
   const mascotas = req.query.mascotas;
   let response;
 
-  console.info('####', mascotas);
   if (mascotas !== undefined) {
-    response = await pool.query("SELECT * FROM reservas WHERE mascota_id IN(" + mascotas +")");
+    response = await pool.query("SELECT r.fecha_hora, s.nombre, m.mascota FROM reservas AS r INNER JOIN servicios s ON s.id=r.servicio_id INNER JOIN mascotas m ON m.id=r.mascota_id WHERE r.mascota_id IN(" + mascotas + ")");
   } else {
-    response = await pool.query("SELECT * FROM reservas");
+    response = await pool.query("SELECT r.fecha_hora, s.nombre, m.mascota FROM reservas AS r INNER JOIN servicios s ON s.id=r.servicio_id INNER JOIN mascotas m ON m.id=r.mascota_id");
   }
 
   res.send(response.rows);
