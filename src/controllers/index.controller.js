@@ -32,10 +32,11 @@ const getClientes = async (req, res) => {
   res.send(response.rows[0]);
 };
 const getMascotas = async (req, res) => {
-  const client_id = req.query.client;
+  const cliente = req.query.cliente;
+  console.info('###', cliente);
 
-  if (client_id) {
-    const response = await pool.query("SELECT * FROM mascotas WHERE propietario_id=" + client_id);
+  if (cliente) {
+    const response = await pool.query("SELECT * FROM mascotas WHERE propietario_id=" + cliente);
   } else {
     const response = await pool.query("SELECT * FROM mascotas");
   }
