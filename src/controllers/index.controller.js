@@ -71,12 +71,12 @@ const getServicios = async (req, res) => {
   );
   res.send(response.rows[0]);
 };
-const getTipomascota = async (req, res) => {
+const getTiposMascota = async (req, res) => {
   const response = await pool.query("SELECT * FROM tipo_mascotas");
   res.send(response.rows);
 };
 
-const getTipomascotas = async (req, res) => {
+const getTipoMascota = async (req, res) => {
   const response = await pool.query(
     "SELECT * FROM tipo_mascotas WHERE id=" + req.params.tipo_mascota_id
   );
@@ -220,7 +220,7 @@ const deleteCliente = async (req, res) => {
   res.send("Eliminado");
 };
 
-const deleteMascotas = async (req, res) => {
+const deleteMascota = async (req, res) => {
   const response = await pool.query(
     "DELETE from mascotas WHERE id = " + req.params.mascota_id + ""
   );
@@ -243,8 +243,8 @@ module.exports = {
   getReservas,
   getServicio,
   getServicios,
-  getTipomascota,
-  getTipomascotas,
+  getTiposMascota,
+  getTipoMascota,
   createClientes,
   createTipoDocumento,
   createMascotas,
